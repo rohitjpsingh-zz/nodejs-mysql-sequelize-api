@@ -1,0 +1,44 @@
+Tools Need:
+1. MySql Installed on System
+2. Node JS Installed on System
+
+Steps:
+1. Create Project Directory
+
+2. Now, go to the project directory and run
+=> npm init
+
+3. Create Main JS file for e.g. index.js in root directory
+
+4. Add this code to package.json
+"scripts": {
+  "start": "node index"
+}
+
+5. Install some of the dependencies that will help in constructing our API server easily
+=> npm install express cors morgan sequelize cookie-parser mysql2
+=> npm install sequelize-cli
+
+6. Sequlize CLI Setup
+=> npx sequelize-cli init
+This will add these folders (config, models, migrations, seeders) in your project structure.
+
+7. Change DB Credential in config/config.json for development
+"development": {
+    "username": "root", <--------
+    "password": null, <--------
+    "database": "database_development", <-------
+    "host": "127.0.0.1", <---------
+    "dialect": "mysql"
+},
+
+8. Create User models in your database
+=> npx sequelize-cli model:generate --name User --attributes firstName:string,lastName:string,email:string
+It adds the user.js file in models folder and adds a migration file in migrations folder.
+
+9. Migrating these changes in your localhost database
+=> npx sequelize-cli db:create    <====  (Create New Database)
+=> npx sequelize-cli db:migrate   <====  (Migrate Models in Database)
+
+10. Check your MySQL Database
+You can see a new table has been created. That means we have successfully integrated Node JS, Sequelize and MySQL.
